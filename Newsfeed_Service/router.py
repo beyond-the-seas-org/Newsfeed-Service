@@ -10,10 +10,10 @@ from app import app
 api = Api(app)
 
 
-api.add_resource(Create_profile,'/create_profile')
-api.add_resource(Get_all_post,'/get_posts')
-api.add_resource(Add_post,'/add_post')
-api.add_resource(Add_comment,'/add_comment')
-api.add_resource(Upvote_or_Downvote_for_post,'/post/<vote>')
-api.add_resource(Upvote_or_Downvote_for_comment,'/comment/<vote>')
+api.add_resource(Create_profile,'/beyond-the-seas.org/api/newsfeed/create_profile')
+api.add_resource(Get_all_post,'/beyond-the-seas.org/api/newsfeed/get_posts')
+api.add_resource(Add_post,'/beyond-the-seas.org/api/newsfeed/add_post')
+api.add_resource(Add_comment,'/beyond-the-seas.org/api/newsfeed/add_comment')
+api.add_resource(Upvote_or_Downvote_for_post,'/beyond-the-seas.org/api/newsfeed/post/<vote>')
+api.add_resource(Upvote_or_Downvote_for_comment,'/beyond-the-seas.org/api/newsfeed/comment/<vote>')
 
