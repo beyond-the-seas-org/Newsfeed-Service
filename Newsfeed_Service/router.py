@@ -1,0 +1,19 @@
+from APIs.Create_Profile import *
+from APIs.Add_Post import *
+from APIs.Get_Recent_Posts import *
+from APIs.Add_Comment import *
+from APIs.Upvote_downvote import *
+from flask_restful import Api
+
+from app import app
+
+api = Api(app)
+
+
+api.add_resource(Create_profile,'/create_profile')
+api.add_resource(Get_all_post,'/get_posts')
+api.add_resource(Add_post,'/add_post')
+api.add_resource(Add_comment,'/add_comment')
+api.add_resource(Upvote_or_Downvote_for_post,'/post/<vote>')
+api.add_resource(Upvote_or_Downvote_for_comment,'/comment/<vote>')
+
