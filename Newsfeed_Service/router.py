@@ -10,7 +10,7 @@ from app import app
 api = Api(app)
 
 
-api.add_resource(Create_profile,'/beyond-the-seas.org/api/newsfeed/create_profile')
+api.add_resource(Create_profile,'/beyond-the-seas.org/api/create_profile')
 api.add_resource(Get_all_post,'/beyond-the-seas.org/api/newsfeed/get_posts')
 api.add_resource(Add_post,'/beyond-the-seas.org/api/newsfeed/add_post')
 api.add_resource(Add_comment,'/beyond-the-seas.org/api/newsfeed/add_comment')

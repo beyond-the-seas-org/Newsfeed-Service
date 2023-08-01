@@ -1,5 +1,5 @@
 ##Profile
-### create_profile (post method)
+### /beyond-the-seas.org/api/create_profile(post method)
 
 post request from frontend ==>
 
@@ -31,7 +31,7 @@ post request from frontend ==>
 ## Newsfeed
 
 
-### /getposts(Get method)
+### /beyond-the-seas.org/api/newsfeed/getposts(Get method)
 
 response from backend==>
 [
@@ -84,7 +84,7 @@ response from backend==>
 ]
 
 
-### /addpost(Post method)
+### /beyond-the-seas.org/api/newsfeed/addpost(Post method)
 
 post request from frontend ==>
 {
@@ -95,7 +95,7 @@ post request from frontend ==>
 }
 
 
-### /addcomment(Post method)
+### /beyond-the-seas.org/api/newsfeed/addcomment(Post method)
 
 post request from frontend ==>
 
@@ -107,7 +107,7 @@ post request from frontend ==>
 }
 
 
-### /post/<vote> (upvote or downvote) (post method)
+### /beyond-the-seas.org/api/newsfeed/post/<vote> (upvote or downvote) (post method)
 
 post request from frontend ==>
 
@@ -116,7 +116,7 @@ post request from frontend ==>
 }
 
 
-### /comment/<vote> (upvote or downvote) (post method)
+### /beyond-the-seas.org/api/newsfeed/comment/<vote> (upvote or downvote) (post method)
 
 post request from frontend ==>
 
