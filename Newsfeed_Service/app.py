@@ -3,8 +3,11 @@ from flask_restful import Api, Resource
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy import func
+from itertools import groupby
+
 import datetime
 import sys
+
 
 
 import os
@@ -101,7 +104,7 @@ class Create_profile(Resource):
 api.add_resource(Create_profile,'/create_profile')
 
 
-#this class is for adding post into database
+#this class is for adding new post into database
 
 class Add_post(Resource):
     def post(self):
@@ -147,29 +150,103 @@ class Add_post(Resource):
 
 api.add_resource(Add_post,'/add_post')
 
+#this class is for getting recent posts from database
+
+
 class Get_all_post(Resource):
     def get(self):
-        all_posts = db.session.query(StudentModel,PostModel,CommentModel).join(StudentModel).join(PostModel).all()
-        print(all_posts)
+        #db.aliased() is used to cross join two same table.."aliased_Student_model" is a different instance of StudentModel
+        aliased_Student_model = db.aliased(StudentModel)
+        all_posts = db.session.query(StudentModel,PostModel,CommentModel,aliased_Student_model).filter(StudentModel.id == PostModel.profile_id).filter(CommentModel.post_id == PostModel.id).filter(CommentModel.profile_id == aliased_Student_model.id).order_by(PostModel.date.desc()).all()
+
+        """
+        Here the logic is little bit tricky..here after the above query a list of tuples will be retrieved.each tuple represents a 
+        row of joined table..A single tuple will look like below..
+        
+        (student1,post1,comment2,student2) 
+        ==> this tuple means student1/user1 did a post named "post1" and there is a comment for this post named "comment2" and the comment was done by "student2"
+
+        So,the retrieved list of tuples after the above query will look like this 
+        [(student1,post1,comment2,student2),
+         (student2,post2,comment1,student1),
+         (student3,post3,comment3,student1),
+         (student3,post3,comment4,student2),.....  ]
+
+         Now we got the above tuples where we can see both post1 has post2 has single comment but post 3 has two comments..But we want to return a list of post as a response to the frontend..That means we want to return a list of json/dictionary where each json/dictionary will correspond to a single post..For example for the above list of tuple we want to return something like this,
+         [
+            {
+                "post_id" : post1
+                "user_id" : student1
+                "comments" :["comment2" posted by "student2"] 
+            },
+            {
+                "post_id" : post2
+                "user_id" : student2
+                "comments" :["comment1" posted by "student1"] 
+            },
+            {
+                "post_id" : post2
+                "user_id" : student2
+                "comments" :["comment3" posted by "student1" , "comment4" posted by "student2"  ] 
+            },
+                   
+         ] 
+
+         So, to return this type of list of json we need to group by the above list of tuples(which we got from query) according to 1st and 2nd element of each tuple(1st element=student who posts(eg.student1),2nd element = the post(eg. post1) )
+
+        
+        """
+
+        # Group the "all_posts" by the 1st and 2nd element of each tuple(i.e ,1st element=student who posts,2nd element = the post )
+        grouped_tuples = {}
+        #x[0] means 1st element of tuple and x[1] means  2nd element of tuple
+        for key, group in groupby(all_posts, key=lambda x: (x[0],x[1])): 
+            grouped_tuples[key] = list(group)
+
+       # print(grouped_tuples)
 
         post_dicts=[]
 
-        for student,post in all_posts:
+        for key in grouped_tuples:
             
             post_dict={}
+            student = key[0]
+            post = key[1]
+            comments_and_commentors = grouped_tuples[key]
+
             post_dict['user_id'] = student.id
             post_dict['user_name'] = student.username
             post_dict['post_id'] = post.id
             post_dict['post_desc']=post.post_desc
+            post_dict['upvote']=post.upvotes
+            post_dict['downvotes']=post.downvotes
+
+            all_comments=[]
+            for comment_and_commentor in comments_and_commentors:
+                comment_details={}
+                comment = comment_and_commentor[2]
+                commentor = comment_and_commentor[3]
+                comment_details['comment'] = comment.comment
+                comment_details['commentor'] = commentor.username
+                all_comments.append(comment_details)
+
+            post_dict['comments'] = all_comments    
+
+
+
+
+
             post_dicts.append(post_dict)
 
-        result = {}
-        result['all_posts'] = post_dicts 
-        return jsonify(result)  
+        return jsonify(post_dicts)  
+
 
 
 
 api.add_resource(Get_all_post,'/get_posts')
+
+#this class is for adding new comment into database
+
 
 class Add_comment(Resource):
     def post(self):
@@ -216,6 +293,70 @@ class Add_comment(Resource):
 
 
 api.add_resource(Add_comment,'/add_comment')
+
+#this method is for upvote or downvote for post
+
+class Upvote_or_Downvote_for_post(Resource):
+    def post(self,vote):
+        post_id = request.json['post_id']
+        post = PostModel.query.get(post_id)
+
+        if (vote == "upvote"):  
+            if post: #if post is not none
+                post.upvotes = post.upvotes + 1  # Modify the attribute value
+                db.session.commit()  # Commit the changes to the database
+                return jsonify(post.json())
+            else:
+                return jsonify({"message:error in upvote_or_downvote"})  
+         
+        if (vote == "downvote"):  
+          
+            if post: #if post is not none
+                post.downvotes = post.downvotes + 1  # Modify the attribute value
+                db.session.commit()  # Commit the changes to the database
+                return jsonify(post.json())
+
+            else:
+                return jsonify({"message:error in upvote_or_downvote"})  
+
+
+
+
+
+api.add_resource(Upvote_or_Downvote_for_post,'/post/<vote>')
+
+
+#this method is for upvote or downvote for comment
+
+class Upvote_or_Downvote_for_comment(Resource):
+    def post(self,vote):
+        comment_id = request.json['comment_id']
+        comment = CommentModel.query.get(comment_id)
+
+        if (vote == "upvote"):  
+            if comment: #if post is not none
+                comment.upvotes = comment.upvotes + 1  # Modify the attribute value
+                db.session.commit()  # Commit the changes to the database
+                return jsonify(comment.json())
+            else:
+                return jsonify({"message:error in upvote_or_downvote"})  
+         
+        if (vote == "downvote"):  
+          
+            if comment: #if post is not none
+                comment.downvotes = comment.downvotes + 1  # Modify the attribute value
+                db.session.commit()  # Commit the changes to the database
+                return jsonify(comment.json())
+
+            else:
+                return jsonify({"message:error in upvote_or_downvote"})  
+
+
+
+
+
+api.add_resource(Upvote_or_Downvote_for_comment,'/comment/<vote>')
+
 
 
 
