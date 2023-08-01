@@ -116,7 +116,7 @@ post request from frontend ==>
 }
 
 
-### /comment/<vote> (upvote or downvote) (comment method)
+### /comment/<vote> (upvote or downvote) (post method)
 
 post request from frontend ==>
 
