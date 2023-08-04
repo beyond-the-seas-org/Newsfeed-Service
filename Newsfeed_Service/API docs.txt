@@ -151,7 +151,7 @@ post request from frontend ==>
 }
 
 
-### /beyond-the-seas.org/api/newsfeed/comment/<vote> (upvote or downvote) (post method)
+6)### /beyond-the-seas.org/api/newsfeed/comment/<vote> (upvote or downvote) (post method)
 (here "vote" is a variable....the value can of "vote" is "upvote" or "downvote")
 
 post request from frontend ==>
