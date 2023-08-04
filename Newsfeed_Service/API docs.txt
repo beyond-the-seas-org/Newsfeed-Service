@@ -33,7 +33,7 @@ post request from frontend ==>
 ----------------------
 
 
-1)### /beyond-the-seas.org/api/newsfeed/getposts(Get method)
+1)### /beyond-the-seas.org/api/newsfeed/get_posts(Get method)
 
 response from backend==>
 [
