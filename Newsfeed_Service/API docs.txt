@@ -1,4 +1,5 @@
-##Profile
+##Profile service
+-------------------------
 ### /beyond-the-seas.org/api/create_profile(post method)
 
 post request from frontend ==>
@@ -28,35 +29,25 @@ post request from frontend ==>
 }
 
 
-## Newsfeed
+## Newsfeed service
+----------------------
 
 
-### /beyond-the-seas.org/api/newsfeed/getposts(Get method)
+1)### /beyond-the-seas.org/api/newsfeed/getposts(Get method)
 
 response from backend==>
 [
+   [
     {
-        "comments": [
-            {
-                "comment": "this is test comment 2",
-                "commentor": "asif"
-            }
-        ],
         "downvotes": 0,
         "post_desc": "This is a test post 1",
         "post_id": 1,
-        "upvote": 0,
+        "upvote": 1,
         "user_id": 1,
         "user_name": "XYZ"
     },
     {
-        "comments": [
-            {
-                "comment": "this is test comment 3",
-                "commentor": "anik"
-            }
-        ],
-        "downvotes": 0,
+        "downvotes": 3,
         "post_desc": "This is a test post 2",
         "post_id": 2,
         "upvote": 0,
@@ -64,27 +55,69 @@ response from backend==>
         "user_name": "asif"
     },
     {
-        "comments": [
-            {
-                "comment": "this is test comment 1",
-                "commentor": "XYZ"
-            },
-            {
-                "comment": "this is test comment 4",
-                "commentor": "asif"
-            }
-        ],
         "downvotes": 0,
         "post_desc": "This is a test post 3",
         "post_id": 3,
-        "upvote": 0,
+        "upvote": 2,
         "user_id": 3,
         "user_name": "anik"
+    },
+    {
+        "downvotes": 0,
+        "post_desc": "This is a test post4",
+        "post_id": 4,
+        "upvote": 0,
+        "user_id": 2,
+        "user_name": "asif"
+    },
+    {
+        "downvotes": 0,
+        "post_desc": "This is a test post5",
+        "post_id": 5,
+        "upvote": 0,
+        "user_id": 4,
+        "user_name": "fahim"
+    },
+    {
+        "downvotes": 0,
+        "post_desc": "This is a test post6",
+        "post_id": 6,
+        "upvote": 0,
+        "user_id": 2,
+        "user_name": "asif"
     }
 ]
 
 
-### /beyond-the-seas.org/api/newsfeed/addpost(Post method)
+2)### /beyond-the-seas.org/api/newsfeed/<post_id>/get_comments(Get method)
+
+(here ,"post_id" is variable..Here from the frontend this "post_id" should be replaced by an integer .
+eg,/beyond-the-seas.org/api/newsfeed/2/get_comments)
+
+response from backend:
+
+[
+    {
+        "comment": "this is test comment 1",
+        "comment_id": 1,
+        "commentor": "XYZ",
+        "downvotes": 0,
+        "upvote": 0
+    },
+    {
+        "comment": "this is test comment 4",
+        "comment_id": 4,
+        "commentor": "asif",
+        "downvotes": 0,
+        "upvote": 0
+    }
+]
+
+
+
+
+
+3)### /beyond-the-seas.org/api/newsfeed/addpost(Post method)
 
 post request from frontend ==>
 {
@@ -95,7 +128,7 @@ post request from frontend ==>
 }
 
 
-### /beyond-the-seas.org/api/newsfeed/addcomment(Post method)
+4)### /beyond-the-seas.org/api/newsfeed/addcomment(Post method)
 
 post request from frontend ==>
 
@@ -107,7 +140,9 @@ post request from frontend ==>
 }
 
 
-### /beyond-the-seas.org/api/newsfeed/post/<vote> (upvote or downvote) (post method)
+5)### /beyond-the-seas.org/api/newsfeed/post/<vote> (upvote or downvote) (post method)
+(here "vote" is a variable....the value can of "vote" is "upvote" or "downvote")
+
 
 post request from frontend ==>
 
@@ -117,6 +152,7 @@ post request from frontend ==>
 
 
 ### /beyond-the-seas.org/api/newsfeed/comment/<vote> (upvote or downvote) (post method)
+(here "vote" is a variable....the value can of "vote" is "upvote" or "downvote")
 
 post request from frontend ==>
 
