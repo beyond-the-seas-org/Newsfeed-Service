@@ -1,0 +1,173 @@
+##Profile service
+-------------------------
+### /beyond-the-seas.org/api/create_profile(post method)
+
+post request from frontend ==>
+
+{
+"username":"XYZ",
+"first_name":"ABC",
+"last_name":"PQR",
+"primary_email":"anik2023@gmail.com",
+"gender":"male",
+"age":25,
+"secondary_email":"XYZA2023@gmail.com",
+"bsc_year_of_passing":2018,
+"ms_year_of_passing":2020,
+"bsc_cgpa":3.70,
+"ms_cgpa":3.90,
+"bsc_university":"Bangladesh University of Engineering and Technology",
+"ms_university":"Bangladesh University of Engineering and Technology",
+"github_link":"https://github.com/beyond-the-seas3-org",
+"linkedin_link":"linkdin3",
+"current_address":"Dhaka,Bangladesh",
+"website_link":"website3",
+"gre_verbal_quant_score":10,
+"gre_awa_score":10.0,
+"toefl_score":10 ,
+"ielts_score":7.5
+}
+
+
+## Newsfeed service
+----------------------
+
+
+1)### /beyond-the-seas.org/api/newsfeed/get_posts(Get method)
+
+response from backend==>
+[
+   [
+    {
+        "downvotes": 0,
+        "post_desc": "This is a test post 1",
+        "post_id": 1,
+        "upvote": 1,
+        "user_id": 1,
+        "user_name": "XYZ"
+    },
+    {
+        "downvotes": 3,
+        "post_desc": "This is a test post 2",
+        "post_id": 2,
+        "upvote": 0,
+        "user_id": 2,
+        "user_name": "asif"
+    },
+    {
+        "downvotes": 0,
+        "post_desc": "This is a test post 3",
+        "post_id": 3,
+        "upvote": 2,
+        "user_id": 3,
+        "user_name": "anik"
+    },
+    {
+        "downvotes": 0,
+        "post_desc": "This is a test post4",
+        "post_id": 4,
+        "upvote": 0,
+        "user_id": 2,
+        "user_name": "asif"
+    },
+    {
+        "downvotes": 0,
+        "post_desc": "This is a test post5",
+        "post_id": 5,
+        "upvote": 0,
+        "user_id": 4,
+        "user_name": "fahim"
+    },
+    {
+        "downvotes": 0,
+        "post_desc": "This is a test post6",
+        "post_id": 6,
+        "upvote": 0,
+        "user_id": 2,
+        "user_name": "asif"
+    }
+]
+
+
+2)### /beyond-the-seas.org/api/newsfeed/<post_id>/get_comments(Get method)
+
+(here ,"post_id" is variable..Here from the frontend this "post_id" should be replaced by an integer .
+eg,/beyond-the-seas.org/api/newsfeed/2/get_comments)
+
+response from backend:
+
+[
+    {
+        "comment": "this is test comment 1",
+        "comment_id": 1,
+        "commentor": "XYZ",
+        "downvotes": 0,
+        "upvote": 0
+    },
+    {
+        "comment": "this is test comment 4",
+        "comment_id": 4,
+        "commentor": "asif",
+        "downvotes": 0,
+        "upvote": 0
+    }
+]
+
+
+
+
+
+3)### /beyond-the-seas.org/api/newsfeed/add_post(Post method)
+
+post request from frontend ==>
+{
+ "user_id" : 2,
+ "post_desc": "This is a test post4",
+ "date":"2023-07-26 11:30:00",
+ "type":"newsfeed"
+}
+
+
+4)### /beyond-the-seas.org/api/newsfeed/add_comment(Post method)
+
+post request from frontend ==>
+
+{
+ "user_id": 1,
+ "post_id": 3,
+ "date":"2023-07-31 18:30:00",
+ "comment": "this is test comment 1"
+}
+
+
+5)### /beyond-the-seas.org/api/newsfeed/post/<vote> (upvote or downvote) (post method)
+(here "vote" is a variable....the value can of "vote" is "upvote" or "downvote")
+
+
+post request from frontend ==>
+
+{
+ "post_id":1
+}
+
+
+6)### /beyond-the-seas.org/api/newsfeed/comment/<vote> (upvote or downvote) (post method)
+(here "vote" is a variable....the value can of "vote" is "upvote" or "downvote")
+
+post request from frontend ==>
+
+{
+ "comment_id":1
+}
+
+
+
+
+
+
+
+
+
+
+
+
