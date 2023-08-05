@@ -160,6 +160,58 @@ post request from frontend ==>
  "comment_id":1
 }
 
+7)### /beyond-the-seas.org/api/newsfeed/edit_post (post method)
+post request from frontend ==>
+
+{
+ "post_id":8,
+ "post_desc": "This is edited post8"
+}
+
+8)### /beyond-the-seas.org/api/newsfeed/edit_comment (post method)
+post request from frontend ==>
+
+{
+ "comment_id":6,
+ "comment": "This is edited comment6"
+}
+
+
+9)### /beyond-the-seas.org/api/newsfeed/delete_post (post method)
+post request from frontend ==>
+
+{
+ "post_id":9
+}
+
+
+
+10)### /beyond-the-seas.org/api/newsfeed/<user_id>/get_own_posts (get method)
+response from backend ==>
+
+[
+    {
+        "date": "Mon, 31 Jul 2023 12:30:00 GMT",
+        "downvotes": 3,
+        "post_desc": "This is a test post 2",
+        "post_id": 2,
+        "upvote": 0
+    },
+   
+    {
+        "date": "Mon, 26 Jun 2023 09:30:00 GMT",
+        "downvotes": 0,
+        "post_desc": "This is a test post6",
+        "post_id": 6,
+        "upvote": 0
+    }
+]
+
+
+
+
+
+
 
 
 

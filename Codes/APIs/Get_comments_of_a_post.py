@@ -14,7 +14,6 @@ sys.path.append("..")
 
 
 from Models.student import *
-from Models.post import * 
 from Models.comment import * 
 
 
