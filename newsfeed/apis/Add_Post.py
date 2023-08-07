@@ -7,7 +7,7 @@ import datetime
 
 from newsfeed.models.post import * 
 from newsfeed.models.community import *
-
+from newsfeed.models.student import *
 #this class is for adding new post into database
 
 class Add_post(Resource):

@@ -10,8 +10,6 @@ class Get_own_posts(Resource):
     @api.doc(responses={200: 'OK', 404: 'Not Found', 500: 'Internal Server Error'})
 
     def get(self,user_id):
-        #db.aliased() is used to cross join two same table.."aliased_Student_model" is a different instance of StudentModel
-        # aliased_Student_model = db.aliased(StudentModel)
         all__own_posts =PostModel.query.filter_by(profile_id=user_id).order_by(PostModel.date.desc()).all()
        
         post_dicts=[]
