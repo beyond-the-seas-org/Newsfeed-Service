@@ -21,29 +21,12 @@ class Add_comment(Resource):
         else:
             max_id = max_id + 1
 
-
         new_comment = CommentModel()
-        
         new_comment.id = max_id
         new_comment.comment = request.json['comment']
-        Datetime = request.json['date']
-
-        """
-        here the "Datetime" will contain a string like "2023-07-31 15:30:00"
-        so , we have to convert this "Datetime" string into a "datetime" type object before entering datetime into database
-        So, to convert into "datetime" object we have to call "datetime.datetime(2023,07,31,15,30,0)" and this will return a datetime object..Thats why the following split() is performed
-        """
-
-        Datetime = Datetime.split(' ')
-        date = Datetime[0].split("-")
-        time = Datetime[1].split(":")
-
-        Datetime = datetime.datetime(int(date[0]),int(date[1]),int(date[2]),int(time[0]),int(time[1]),int(time[2]))
-        new_comment.date = Datetime
-
+        new_comment.date = datetime.datetime.now()
         new_comment.profile_id = request.json['user_id']
         new_comment.post_id = request.json['post_id']
-
         new_comment.upvotes = 0
         new_comment.downvotes = 0
 

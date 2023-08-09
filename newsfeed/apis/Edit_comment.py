@@ -12,7 +12,7 @@ from newsfeed.models.comment import *
 class Edit_comment(Resource):
     @api.doc(responses={200: 'OK', 404: 'Not Found', 500: 'Internal Server Error'})
 
-    def post(self):
+    def put(self):
         comment_id = request.json['comment_id']
         edited_comment = request.json['comment']
         comment = CommentModel.query.get(comment_id)

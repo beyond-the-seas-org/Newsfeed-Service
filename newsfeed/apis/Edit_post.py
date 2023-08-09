@@ -10,7 +10,7 @@ from newsfeed.models.post import *
 class Edit_post(Resource):
     @api.doc(responses={200: 'OK', 404: 'Not Found', 500: 'Internal Server Error'})
 
-    def post(self):
+    def put(self):
         post_id = request.json['post_id']
         edited_post_desc = request.json['post_desc']
         post = PostModel.query.get(post_id)

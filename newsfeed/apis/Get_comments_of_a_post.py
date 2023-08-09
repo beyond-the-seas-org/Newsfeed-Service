@@ -31,7 +31,7 @@ class Get_Comment_of_a_post(Resource):
         for student_id in all_student_ids:
             all_student_ids_dicts.append({"student_id":student_id.profile_id})
 
-        response = requests.post('http://localhost:5001//api/user/get_student_names',json= all_student_ids_dicts)
+        response = requests.post('http://localhost:5001//api/profile/get_student_names',json= all_student_ids_dicts)
     
 
         #from "response" we will buld a panda table of which has the mapping of the student ids with student names
@@ -55,6 +55,7 @@ class Get_Comment_of_a_post(Resource):
             comment_dict['comment_id'] = comment['id']
             comment_dict['commentor'] = comment["username"]
             comment_dict['comment']= comment['comment']
+            comment_dict['date']= comment['date']
             comment_dict['upvote']= comment['upvotes']
             comment_dict['downvotes']= comment['downvotes']
             comment_dicts.append(comment_dict)

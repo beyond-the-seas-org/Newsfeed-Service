@@ -12,7 +12,7 @@ from newsfeed.models.post import *
 class Delete_post(Resource):
     @api.doc(responses={200: 'OK', 404: 'Not Found', 500: 'Internal Server Error'})
 
-    def post(self):
+    def put(self):
         post_id = request.json['post_id']
         post = PostModel.query.get(post_id)
         if post is not None:
