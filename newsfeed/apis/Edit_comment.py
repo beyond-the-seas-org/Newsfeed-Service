@@ -13,9 +13,13 @@ class Edit_comment(Resource):
     @api.doc(responses={200: 'OK', 404: 'Not Found', 500: 'Internal Server Error'})
 
     def put(self):
-        comment_id = request.json['comment_id']
-        edited_comment = request.json['comment']
-        comment = CommentModel.query.get(comment_id)
-        comment.comment = edited_comment  # Modify the attribute value
-        db.session.commit()  # Commit the changes to the database
-        return jsonify(comment.json())
+        try:
+            comment_id = request.json['comment_id']
+            edited_comment = request.json['comment']
+            comment = CommentModel.query.get(comment_id)
+            comment.comment = edited_comment  # Modify the attribute value
+            db.session.commit()  # Commit the changes to the database
+            return jsonify(comment.json())
+        except Exception as e:
+            print({"message":"exception occured in edit_comments"})
+            return jsonify({"message":"exception occured in edit_comment"})

@@ -15,25 +15,30 @@ class Add_post(Resource):
 
     def post(self):
 
-        #for getting the next "id" for next entry of the "post" table
-        max_id = db.session.query(func.max(PostModel.id)).scalar()
-        if (max_id == 'None'):
-            max_id = 1
-        else:
-            max_id = max_id + 1
-   
-        new_post = PostModel()
-        new_post.id = max_id
-        new_post.post_desc = request.json['post_desc']
-        new_post.date = datetime.datetime.now()
-        new_post.profile_id = request.json['user_id']
-        new_post.community_id = None
-        new_post.type = request.json['type']
-        new_post.upvotes = 0
-        new_post.downvotes = 0
+        try:
 
-        db.session.add(new_post)
-        db.session.commit()
+            #for getting the next "id" for next entry of the "post" table
+            max_id = db.session.query(func.max(PostModel.id)).scalar()
+            if max_id:
+                max_id = max_id + 1
+            else:
+                max_id = 1
+
+            new_post = PostModel()
+            new_post.id = max_id
+            new_post.post_desc = request.json['post_desc']
+            new_post.date = datetime.datetime.now()
+            new_post.profile_id = request.json['user_id']
+            new_post.community_id = None
+            new_post.type = request.json['type']
+            new_post.upvotes = 0
+            new_post.downvotes = 0
+
+            db.session.add(new_post)
+            db.session.commit()
 
 
-        return jsonify(new_post.json())
+            return jsonify(new_post.json())
+        except Exception as e:
+            print({"message":"exception occured in add_post"})
+            return jsonify({"message":"exception occured in add_post"})
