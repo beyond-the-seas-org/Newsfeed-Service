@@ -65,7 +65,7 @@ response from backend==>
 ]
 
 
-2)### api/newsfeed/<post_id>/get_comments(Get method)
+2)### api/newsfeed/<current_user_id>/<post_id>/get_comments(Get method)
 
 (here ,"post_id" is variable..Here from the frontend this "post_id" should be replaced by an integer .
 eg,/beyond-the-seas.org/api/newsfeed/2/get_comments)
