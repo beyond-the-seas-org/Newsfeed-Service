@@ -21,6 +21,6 @@ Newsfeed.add_resource(Edit_post,'/edit_post')
 Newsfeed.add_resource(Edit_comment,'/edit_comment')
 Newsfeed.add_resource(Delete_post,'/delete_post')
 Newsfeed.add_resource(Get_own_posts,'/<user_id>/get_own_posts') #this API req will come from "user service"
-Newsfeed.add_resource(Search_Post,'/<curren_user_id>/search') #this API req will come from "user service"
+Newsfeed.add_resource(Search_Post,'/<curren_user_id>/search') 
 
 
