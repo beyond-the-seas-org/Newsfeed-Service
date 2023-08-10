@@ -14,25 +14,36 @@ class Add_comment(Resource):
 
     def post(self):
 
-        #for getting the next "id" for next entry of the "post" table
-        max_id = db.session.query(func.max(CommentModel.id)).scalar()
-        if (max_id == 'None'):
-            max_id = 1
-        else:
-            max_id = max_id + 1
+        try:
+            #for getting the next "id" for next entry of the "post" table
+            max_id = db.session.query(func.max(CommentModel.id)).scalar()
+            if max_id:
+                max_id = max_id + 1
+            else:
+                max_id = 1
 
-        new_comment = CommentModel()
-        new_comment.id = max_id
-        new_comment.comment = request.json['comment']
-        new_comment.date = datetime.datetime.now()
-        new_comment.profile_id = request.json['user_id']
-        new_comment.post_id = request.json['post_id']
-        new_comment.upvotes = 0
-        new_comment.downvotes = 0
+            new_comment = CommentModel()
+            new_comment.id = max_id
+            new_comment.comment = request.json['comment']
+            new_comment.date = datetime.datetime.now()
+            new_comment.profile_id = request.json['user_id']
+            new_comment.post_id = request.json['post_id']
+            new_comment.upvotes = 0
+            new_comment.downvotes = 0
 
-        db.session.add(new_comment)
-        db.session.commit()
+            db.session.add(new_comment)
+            db.session.commit()
+            
 
-        return jsonify(new_comment.json())
+            return jsonify(new_comment.json())
+
+        except Exception as e:
+            print({"message":"exception occured in add_comment"})
+            return jsonify({"message":"exception occured in add_comment"})
+
+        
+        
+        
+
 
         

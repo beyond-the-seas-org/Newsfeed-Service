@@ -33,56 +33,34 @@ post request from frontend ==>
 ----------------------
 
 
-1)### api/newsfeed/get_posts(Get method)
+1)### api/newsfeed/<current_user_id>/get_posts(Get method)
 
 response from backend==>
+
 [
-   [
-    {
+     {
+        "date": "Thu, 10 Aug 2023 22:03:58 GMT",
+        "downvote_status": false,
         "downvotes": 0,
-        "post_desc": "This is a test post 1",
-        "date": "Mon, 31 Jul 2023 12:30:00 GMT",
-        "post_id": 1,
-        "upvote": 1,
-        "user_id": 1,
-        "user_name": "XYZ"
-    },
-    {
-        "downvotes": 3,
-        "post_desc": "This is a test post 2",
-        "date": "Mon, 31 Jul 2023 12:30:00 GMT",
-        "post_id": 2,
-        "upvote": 0,
-        "user_id": 2,
-        "user_name": "asif"
-    },
-    {
-        "downvotes": 0,
-        "date": "Mon, 31 Jul 2023 12:30:00 GMT",
-        "post_desc": "This is a test post 3",
-        "post_id": 3,
-        "upvote": 2,
+        "post_desc": "Adding post now",
+        "post_id": 19,
+        "upvote": 3,
+        "upvote_status": false,
         "user_id": 3,
         "user_name": "anik"
     },
     {
-        "downvotes": 0,
-        "date": "Mon, 31 Jul 2023 12:30:00 GMT",
-        "post_desc": "This is a test post4",
-        "post_id": 4,
-        "upvote": 0,
+        "date": "Thu, 10 Aug 2023 09:34:03 GMT",
+        "downvote_status": false,
+        "downvotes": 1,
+        "post_desc": "Creating a new Post to test Live update",
+        "post_id": 18,
+        "upvote": 1,
+        "upvote_status": false,
         "user_id": 2,
         "user_name": "asif"
-    },
-    {
-        "downvotes": 0,
-        "date": "Mon, 31 Jul 2023 12:30:00 GMT",
-        "post_desc": "This is a test post5",
-        "post_id": 5,
-        "upvote": 0,
-        "user_id": 4,
-        "user_name": "fahim"
-    },
+    }
+    
     
 ]
 
@@ -96,20 +74,26 @@ response from backend:
 
 [
     {
-        "comment": "this is test comment 1",
-        "comment_id": 1,
-        "commentor": "XYZ",
-        "date": "Mon, 31 Jul 2023 12:30:00 GMT",
+        "comment": "this is test comment 5",
+        "comment_id": 5,
+        "commentor": "anik",
+        "date": "Mon, 31 Jul 2023 17:30:00 GMT",
+        "downvote_status": false,
         "downvotes": 0,
-        "upvote": 0
+        "upvote": 1,
+        "upvote_status": true,
+        "user_id": 3
     },
     {
-        "comment": "this is test comment 4",
-        "comment_id": 4,
-        "commentor": "asif",
-        "date": "Mon, 31 Jul 2023 12:30:00 GMT",
-        "downvotes": 0,
-        "upvote": 0
+        "comment": "This is edited comment6",
+        "comment_id": 6,
+        "commentor": "anik",
+        "date": "Sat, 29 Jul 2023 18:30:00 GMT",
+        "downvote_status": true,
+        "downvotes": 1,
+        "upvote": 0,
+        "upvote_status": false,
+        "user_id": 3
     }
 ]
 
@@ -146,7 +130,8 @@ post request from frontend ==>
 post request from frontend ==>
 
 {
- "post_id":1
+ "post_id":1,
+ "user_id":2
 }
 
 
@@ -157,7 +142,8 @@ post request from frontend ==>
 post request from frontend ==>
 
 {
- "comment_id":1
+ "comment_id":1,
+ "user_id":2
 }
 
 7)### /beyond-the-seas.org/api/newsfeed/edit_post (put method)
@@ -207,7 +193,7 @@ response from backend ==>
     }
 ]
 
-10)### /api/newsfeed/search (post method)
+10)### /api/newsfeed/<curren_user_id>/search (post method)
 
 post request from frontend ==>
 
@@ -223,14 +209,18 @@ response from backend ==>
         "downvotes": 0,
         "post_desc": "Asif Haider user id 1 delete korse",
         "post_id": 9,
-        "upvote": 0
+        "upvote": 0,
+        "user_id": 1,
+
     },
     {
         "date": "Thu, 27 Jul 2023 07:30:00 GMT",
         "downvotes": 0,
         "post_desc": "Post added by asif",
         "post_id": 13,
-        "upvote": 0
+        "upvote": 0,
+        "user_id": 1,
+
     }
 ]
 
