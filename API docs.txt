@@ -171,6 +171,14 @@ post request from frontend ==>
 }
 
 
+9.5)### /api/newsfeed/delete_comment (put method)
+post request from frontend ==>
+
+{
+ "comment_id":9
+}
+
+
 
 10)### /api/newsfeed/<user_id>/get_own_posts (get method)
 response from backend ==>
