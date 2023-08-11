@@ -22,7 +22,7 @@ class Delete_post(Resource):
                 db.session.commit()  # Commit the changes to the database
                 return jsonify({"message":"post has been deleted successfully"})
             else:
-                return jsonify({"message":"error in Delete_post"})
+                return jsonify({"message":"The post does not exist"})
         except Exception as e:
             print({"message":"exception occured in delete_post"})
             return jsonify({"message":"exception occured in delete_post"})
