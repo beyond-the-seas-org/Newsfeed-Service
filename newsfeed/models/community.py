@@ -9,7 +9,7 @@ class CommunityModel(db.Model):
 
     __tablename__ = 'community'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     name = db.Column(db.String(30), nullable=False)
     desc = db.Column(db.String(100))
    

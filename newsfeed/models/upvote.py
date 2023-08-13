@@ -9,7 +9,7 @@ class UpvoteModel(db.Model):
 
     __tablename__ = 'upvote'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     post_id = db.Column(db.Integer, nullable=True)
     comment_id = db.Column(db.Integer,nullable=True)
     type = db.Column(db.String(15),nullable = False)

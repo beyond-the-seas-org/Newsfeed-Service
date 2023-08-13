@@ -16,14 +16,9 @@ class Add_comment(Resource):
 
         try:
             #for getting the next "id" for next entry of the "post" table
-            max_id = db.session.query(func.max(CommentModel.id)).scalar()
-            if max_id:
-                max_id = max_id + 1
-            else:
-                max_id = 1
 
             new_comment = CommentModel()
-            new_comment.id = max_id
+            #new_comment.id = max_id
             new_comment.comment = request.json['comment']
             new_comment.date = datetime.datetime.now()
             new_comment.profile_id = request.json['user_id']

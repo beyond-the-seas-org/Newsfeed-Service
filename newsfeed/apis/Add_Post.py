@@ -17,15 +17,8 @@ class Add_post(Resource):
 
         try:
 
-            #for getting the next "id" for next entry of the "post" table
-            max_id = db.session.query(func.max(PostModel.id)).scalar()
-            if max_id:
-                max_id = max_id + 1
-            else:
-                max_id = 1
-
             new_post = PostModel()
-            new_post.id = max_id
+            #new_post.id = max_id
             new_post.post_desc = request.json['post_desc']
             new_post.date = datetime.datetime.now()
             new_post.profile_id = request.json['user_id']
