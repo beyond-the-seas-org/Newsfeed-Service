@@ -25,4 +25,5 @@ class Delete_comment(Resource):
                 return jsonify({"message":"The comment does not exist"})
         except Exception as e:
             print({"message":"exception occured in delete_comment"})
+            print(e)
             return jsonify({"message":"exception occured in delete_comment"})

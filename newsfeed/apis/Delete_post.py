@@ -25,4 +25,5 @@ class Delete_post(Resource):
                 return jsonify({"message":"The post does not exist"})
         except Exception as e:
             print({"message":"exception occured in delete_post"})
+            print(e)
             return jsonify({"message":"exception occured in delete_post"})
