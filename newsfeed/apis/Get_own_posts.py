@@ -32,6 +32,7 @@ class Get_own_posts(Resource):
 
         except Exception as e:
             print({"message":"exception occured in get_own_posts"})
+            print(e)
             return jsonify({"message":"exception occured in get_own_posts"})      
 
 

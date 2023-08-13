@@ -34,4 +34,5 @@ class Add_post(Resource):
             return jsonify(new_post.json())
         except Exception as e:
             print({"message":"exception occured in add_post"})
+            print(e)
             return jsonify({"message":"exception occured in add_post"})

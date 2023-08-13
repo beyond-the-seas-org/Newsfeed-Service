@@ -34,6 +34,7 @@ class Add_comment(Resource):
 
         except Exception as e:
             print({"message":"exception occured in add_comment"})
+            print(e)
             return jsonify({"message":"exception occured in add_comment"})
 
         

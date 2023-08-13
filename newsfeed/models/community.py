@@ -12,9 +12,7 @@ class CommunityModel(db.Model):
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     name = db.Column(db.String(30), nullable=False)
     desc = db.Column(db.String(100))
-   
 
-    
 
     # create a json method
     def json(self):
