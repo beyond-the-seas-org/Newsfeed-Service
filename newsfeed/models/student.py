@@ -12,7 +12,7 @@ class StudentModel(db.Model):
 
     __tablename__ = 'student'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     # publication_id = db.Column(db.Integer, db.ForeignKey('publications.publication_id'))
 
     # mandatory fields

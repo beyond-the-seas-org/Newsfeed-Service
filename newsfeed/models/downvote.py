@@ -9,9 +9,9 @@ class DownvoteModel(db.Model):
 
     __tablename__ = 'downvote'
 
-    id = db.Column(db.Integer, primary_key=True)
-    post_id = db.Column(db.Integer, nullable=True)
-    comment_id = db.Column(db.Integer,nullable=True)
+    id = db.Column(db.Integer, primary_key=True,autoincrement=True)
+    post_id = db.Column(db.Integer,db.ForeignKey("post.id"), nullable=True)
+    comment_id = db.Column(db.Integer,db.ForeignKey("comment.id"),nullable=True)
     type = db.Column(db.String(15),nullable = False)
     profile_id = db.Column(db.Integer,nullable=False)
      

@@ -46,6 +46,7 @@ class Search_Post(Resource):
             return jsonify(post_dicts)      
         except Exception as e:
             print({"message":"exception occured in search_post"})
+            print(e)
             return jsonify({"message":"exception occured in search_post"})      
 
  

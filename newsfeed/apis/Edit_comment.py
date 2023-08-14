@@ -22,4 +22,5 @@ class Edit_comment(Resource):
             return jsonify(comment.json())
         except Exception as e:
             print({"message":"exception occured in edit_comments"})
+            print(e)
             return jsonify({"message":"exception occured in edit_comment"})

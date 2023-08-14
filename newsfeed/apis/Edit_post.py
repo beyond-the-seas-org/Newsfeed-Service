@@ -20,5 +20,6 @@ class Edit_post(Resource):
             return jsonify(post.json())
         except Exception as e:
             print({"message":"exception occured in edit_post"})
+            print(e)
             return jsonify({"message":"exception occured in edit_post"})
 

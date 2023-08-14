@@ -28,15 +28,8 @@ class Upvote_or_Downvote_for_post(Resource):
                 if post: #if post is not none
                     post.upvotes = post.upvotes + 1  
 
-                    #adding an into "upvote" table
-                    max_id = db.session.query(func.max(UpvoteModel.id)).scalar()
-                    if max_id:
-                        max_id = max_id + 1
-                    else:
-                        max_id = 1
-                    
+                    #adding an into "upvote" table                    
                     new_upvote = UpvoteModel()
-                    new_upvote.id = max_id
                     new_upvote.post_id = post_id
                     new_upvote.comment_id = None
                     new_upvote.type = 'post'
@@ -69,15 +62,8 @@ class Upvote_or_Downvote_for_post(Resource):
                 if post: #if post is not none
                     post.downvotes = post.downvotes + 1  # Modify the attribute value
 
-                    #adding an into "downvote" table
-                    max_id = db.session.query(func.max(DownvoteModel.id)).scalar()
-                    if max_id:
-                        max_id = max_id + 1
-                    else:
-                        max_id = 1
-                    
+                    #adding an into "downvote" table                    
                     new_downvote = DownvoteModel()
-                    new_downvote.id = max_id
                     new_downvote.post_id = post_id
                     new_downvote.comment_id = None
                     new_downvote.type = 'post'
@@ -136,15 +122,8 @@ class Upvote_or_Downvote_for_comment(Resource):
                 if comment: #if post is not none
                     comment.upvotes = comment.upvotes + 1  # Modify the attribute value
                     
-                    #adding an into "upvote" table
-                    max_id = db.session.query(func.max(UpvoteModel.id)).scalar()
-                    if max_id:
-                        max_id = max_id + 1
-                    else:
-                        max_id = 1
-                    
+                    #adding an into "upvote" table                    
                     new_upvote = UpvoteModel()
-                    new_upvote.id = max_id
                     new_upvote.comment_id = comment_id
                     new_upvote.post_id = None
                     new_upvote.type = 'comment'
@@ -176,15 +155,9 @@ class Upvote_or_Downvote_for_comment(Resource):
             
                 if comment: #if post is not none
                     comment.downvotes = comment.downvotes + 1  # Modify the attribute value
-                    #adding an into "upvote" table
-                    max_id = db.session.query(func.max(DownvoteModel.id)).scalar()
-                    if max_id:
-                        max_id = max_id + 1
-                    else:
-                        max_id = 1
-                    
+                  
+                    #adding an into "downvote" table                    
                     new_downvote = DownvoteModel()
-                    new_downvote.id = max_id
                     new_downvote.comment_id = comment_id
                     new_downvote.post_id = None
                     new_downvote.type = 'comment'
