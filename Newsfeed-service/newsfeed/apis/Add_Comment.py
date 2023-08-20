@@ -6,7 +6,6 @@ from newsfeed import api
 import datetime
 
 from newsfeed.models.comment import * 
-from newsfeed.models.student import * 
 
 #this class is for adding new comment into database
 class Add_comment(Resource):

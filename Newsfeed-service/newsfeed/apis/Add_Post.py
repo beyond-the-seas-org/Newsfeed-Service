@@ -7,7 +7,6 @@ import datetime
 
 from newsfeed.models.post import * 
 from newsfeed.models.community import *
-from newsfeed.models.student import *
 #this class is for adding new post into database
 
 class Add_post(Resource):
@@ -30,8 +29,8 @@ class Add_post(Resource):
             db.session.add(new_post)
             db.session.commit()
 
-
-            return jsonify(new_post.json())
+            new_post_id = db.session.query(func.max(PostModel.id)).scalar() #return the highest id of the post table
+            return jsonify({"post_id":new_post_id})
         except Exception as e:
             print({"message":"exception occured in add_post"})
             print(e)

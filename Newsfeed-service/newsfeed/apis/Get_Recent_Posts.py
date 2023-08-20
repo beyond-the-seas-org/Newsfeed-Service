@@ -116,7 +116,7 @@ class Get_all_post(Resource):
 
             all_posts_dicts = []
             for post in all_posts:
-                all_posts_dicts.append({"id":post.id,"post_desc":post.post_desc,"date":post.date,"profile_id":post.profile_id,"upvotes":post.upvotes,"downvotes":post.downvotes})
+                all_posts_dicts.append({"id":post.id,"post_desc":post.post_desc,"date":post.date,"profile_id":post.profile_id,"upvotes":post.upvotes,"downvotes":post.downvotes,"post_image":post.post_image})
 
             #this is the panda tables of all posts    
             all_posts_pd = pd.DataFrame(all_posts_dicts)   
@@ -155,6 +155,7 @@ class Get_all_post(Resource):
                 post_dict['post_desc']=post['post_desc']
                 post_dict['upvotes']=post['upvotes']
                 post_dict['downvotes']=post['downvotes']
+                post_dict['post_image']=post['post_image']
                 post_dict['upvote_status'] = False
                 post_dict['downvote_status'] = False
                 

@@ -1,4 +1,4 @@
-from app import db
+from newsfeed import db
 
 class PostModel(db.Model):
 
@@ -17,6 +17,8 @@ class PostModel(db.Model):
     type = db.Column(db.String(15))
     upvotes = db.Column(db.Integer)
     downvotes = db.Column(db.Integer)
+    post_image = db.Column(db.String(255),nullable=True)
+
 
     #if a post is deleted than all its comments, upvote and downvote entries also should be deleted
 
