@@ -1,4 +1,4 @@
-from newsfeed import db
+from app import db
 
 class PostModel(db.Model):
 
