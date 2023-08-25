@@ -10,6 +10,8 @@ from newsfeed.apis.Get_own_posts import *
 from newsfeed.apis.Edit_comment import *
 from newsfeed.apis.search_post import *
 from newsfeed.apis.Add_image import *
+from newsfeed.apis.Get_funding_posts import *
+from newsfeed.apis.Get_research_posts import *
 
 
 Newsfeed = api.namespace('api/newsfeed')
@@ -26,6 +28,8 @@ Newsfeed.add_resource(Delete_post,'/delete_post')
 Newsfeed.add_resource(Delete_comment,'/delete_comment')
 Newsfeed.add_resource(Get_own_posts,'/<user_id>/get_own_posts') #this API req will come from "user service"
 Newsfeed.add_resource(Search_Post,'/<curren_user_id>/search') 
-Newsfeed.add_resource(Add_image,'/<post_id>/add_image') 
+Newsfeed.add_resource(Add_image,'/<post_id>/add_image')
+Newsfeed.add_resource(Get_funding_posts,'/get_funding_posts') 
+Newsfeed.add_resource(Get_research_posts,'/get_research_posts')  
 
 
