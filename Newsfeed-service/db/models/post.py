@@ -24,7 +24,7 @@ class PostModel(db.Model):
 
     comment_child = db.relationship('CommentModel', backref='postmodel', cascade='all, delete')
     upvote_child = db.relationship('UpvoteModel', backref='postmodel', cascade='all, delete')
-    upvote_child = db.relationship('DownvoteModel', backref='postmodel', cascade='all, delete')  
+    downvote_child = db.relationship('DownvoteModel', backref='postmodel', cascade='all, delete')  
 
     # create a json method
     def json(self):
