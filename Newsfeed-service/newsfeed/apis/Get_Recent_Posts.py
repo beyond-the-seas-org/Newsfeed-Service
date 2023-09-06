@@ -129,7 +129,7 @@ class Get_all_post(Resource):
             for student_id in all_student_ids:
                 all_student_ids_dicts.append({"student_id":student_id.profile_id})
 
-            response = requests.post('http://localhost:5001//api/profile/get_student_names',json= all_student_ids_dicts)
+            response = requests.post('http://localhost:5001//api/profile/get_student_names_and_images',json= all_student_ids_dicts)
 
             #from "response" we will buld a panda table of which has the mapping of the student ids with student names
             student_id_with_names_pd = pd.DataFrame(response.json())
@@ -150,6 +150,7 @@ class Get_all_post(Resource):
                 post_dict={}
                 post_dict['user_id'] = post['profile_id']
                 post_dict['user_name'] = post['username']
+                post_dict['profile_picture_link'] = post['profile_picture_link']
                 post_dict['post_id'] = post['id']
                 post_dict['date'] = post['date']
                 post_dict['post_desc']=post['post_desc']
