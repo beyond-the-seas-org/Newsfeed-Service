@@ -17,8 +17,11 @@ from newsfeed.apis.Get_research_posts import *
 Newsfeed = api.namespace('api/newsfeed')
 
 Newsfeed.add_resource(Get_all_post,'/<current_user_id>/get_posts') 
-Newsfeed.add_resource(Get_Comment_of_a_post,'/<current_user_id>/<post_id>/get_comments')
 Newsfeed.add_resource(Add_post,'/add_post')
+Newsfeed.add_resource(Add_image,'/<post_id>/add_image')
+
+
+Newsfeed.add_resource(Get_Comment_of_a_post,'/<current_user_id>/<post_id>/get_comments')
 Newsfeed.add_resource(Add_comment,'/add_comment')
 Newsfeed.add_resource(Upvote_or_Downvote_for_post,'/post/<vote>/<i_or_d>') # "i_or_d" means increament or decrement
 Newsfeed.add_resource(Upvote_or_Downvote_for_comment,'/comment/<vote>/<i_or_d>')  #"i_or_d" means increament or decrement
@@ -28,7 +31,6 @@ Newsfeed.add_resource(Delete_post,'/delete_post')
 Newsfeed.add_resource(Delete_comment,'/delete_comment')
 Newsfeed.add_resource(Get_own_posts,'/<user_id>/get_own_posts') #this API req will come from "user service"
 Newsfeed.add_resource(Search_Post,'/<curren_user_id>/search') 
-Newsfeed.add_resource(Add_image,'/<post_id>/add_image')
 Newsfeed.add_resource(Get_funding_posts,'/get_funding_posts') 
 Newsfeed.add_resource(Get_research_posts,'/get_research_posts')  
 

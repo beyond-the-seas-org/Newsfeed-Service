@@ -6,12 +6,12 @@ from newsfeed import db
 from newsfeed import api
 import pandas as pd
 import requests
-from flask_jwt_extended import jwt_required
-from flask_jwt_extended.exceptions import NoAuthorizationError
-
 from newsfeed.models.post import * 
 from newsfeed.models.upvote import * 
 from newsfeed.models.downvote import * 
+
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended.exceptions import NoAuthorizationError
 
 @api.errorhandler(NoAuthorizationError)
 def handle_auth_required(e):
