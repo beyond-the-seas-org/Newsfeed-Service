@@ -4,13 +4,21 @@ from sqlalchemy import func
 from newsfeed import db
 from newsfeed import api
 
-from newsfeed.models.post import * 
+from newsfeed.models.post import *
+
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended.exceptions import NoAuthorizationError
+
+@api.errorhandler(NoAuthorizationError)
+def handle_auth_required(e):
+    return {"message": "Authorization token is missing"}, 401
+
 
 """this API will return all the research posts to the "Chatbot-Service"(we assume that all the funting posts at our platform
 will start as "#funding_post"  """
 class Get_research_posts(Resource):
     @api.doc(responses={200: 'OK', 404: 'Not Found', 500: 'Internal Server Error'})
-
+    @jwt_required()
     def get(self):
 
         try:
