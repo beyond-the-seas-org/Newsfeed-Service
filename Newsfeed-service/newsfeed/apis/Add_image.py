@@ -43,7 +43,8 @@ class Add_image(Resource):
             post.post_image = url
             db.session.commit()
             
-            return jsonify({'url': url})
+            # return the image url and ok status
+            return {'url': url, 'status': 'ok'}, 200
 
         except Exception as e:
             print({"message":"exception occured in add_image"})
