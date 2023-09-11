@@ -4,6 +4,7 @@ from sqlalchemy import func
 from newsfeed import db
 from newsfeed import api
 import datetime
+import requests
 
 from newsfeed.models.post import * 
 from newsfeed.models.community import *
@@ -38,6 +39,11 @@ class Add_post(Resource):
             db.session.commit()
 
             new_post_id = db.session.query(func.max(PostModel.id)).scalar() #return the highest id of the post table
+
+            # if the post_desc starts with #funding_post , then call the http://127.0.0.1:5002/api/professor/add_funding_from_newsfeed with the post_desc as funding_post
+            if new_post.post_desc.startswith("#funding_post"):
+                response = requests.post('http://localhost:5002/api/professors/add_funding_from_newsfeed',json= {"funding_post":new_post.post_desc})
+
             return jsonify({"post_id":new_post_id})
         except Exception as e:
             print({"message":"exception occured in add_post"})
